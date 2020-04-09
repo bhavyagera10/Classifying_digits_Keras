@@ -8,10 +8,10 @@ using Keras functional API
 import keras
 from keras.datasets import mnist
 from keras.models import Model
-from keras.layers import Activation, Dense, Flatten, Input
+from keras.layers import Activation, Dense, Flatten, Input #Activation contains sigmoid or exponential function
 from keras.layers import Conv2D, MaxPooling2D
-from keras.optimizers import Adam
 from keras.utils import to_categorical
+from keras.optimizers import Adam
 
 
 # Paramters
@@ -39,7 +39,7 @@ def ConvNET():
 	layer = Activation("relu",name="relu_activation_1")(layer)
 	layer = MaxPooling2D(pool_size=(2,2),name='MaxPooling2D_1')(layer)
 	layer = Conv2D(64,(5,5),padding='same',name='Conv2D_2')(layer)
-	layer = Activation("relu",name="relu_activation_2")(layer)
+	layer = Activation("relu",name="relu_activation_2")(layer) #using rectified linear unit
 	layer = MaxPooling2D(pool_size=(2,2),name='MaxPooling2D_2')(layer)
 	layer = Flatten()(layer)
 	layer = Dense(256,name='Dense_1')(layer)
@@ -47,7 +47,7 @@ def ConvNET():
 	layer = Dense(256,name='Dense_2')(layer)
 	layer = Activation('relu',name='relu_activation_4')(layer)
 	out = Dense(10,name='Out_layer')(layer)
-	out = Activation('softmax', name='softmax_activation')(out)
+	out = Activation('softmax', name='softmax_activation')(out) #using softmax we can use sigmoid 
 	model = Model(inputs=inputs,outputs=out)
 	return model
 
